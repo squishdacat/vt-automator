@@ -20,7 +20,7 @@ This project also assumes you have a battery for your dashcam that allows it to 
 
 ## Process Details
 ### 1. Enable WiFi
-This is simply done using the Dashcam's buttons, navigate to System Settings > WiFi #TODO_menu_name and change the on/off/on for 10 minutes to be just on.
+This is simply done using the Dashcam's buttons, navigate to System Settings > WiFi > WiFi Auto On and change the on/off/on for 10 minutes to be just `on`.
 
 ### 2. Changing default WiFi password
 Do this in the Vantrue app
@@ -28,7 +28,9 @@ Do this in the Vantrue app
 ### 3 & 4. Connect to the Dashcam's AP then telnet in
 I will be doing this with my laptop, for those on NixOS you need to add `pkgs.inetutils` to your packages or run a nix shell (`nix-shell -p inetutils`).
 The dashcam will broadcast it's AP as soon as it powers on but will turn it off when it goes into parking mode (which happens after 10-15 minues). Restart the dashcam and wait for it's AP to become available, join the WiFi network and then attempt to telnet in:
-`telnet 192.168.1.254`
+```
+telnet 192.168.1.254
+```
 It will as for a username, this should just be `root`, no password should be queried for. If all goes well you should be dropped into a shell.
 
 ### 5. Change the root password
@@ -42,7 +44,7 @@ cd /usr/share/wifiscripts
 ```
 You can now use vi to edit the down.sh file. Append the contents of the down-append.sh file to down.sh ensuring that `exit 0` is only present after the appended code and not before.
 #### Why do this?
-The `down.sh` file is called when the dashcam goes into parking mode to turn off the WiFi and therefore save power. Given this we can modify it wait till the AP is turned off and then reconfigure the WiFi interface to turn on as a WPA supplicant. In laymans terms, act like a normal WiFi devices and connect to a WiFi network. My script goes a bit further and will only keep the WiFi on if my home WiFi SSID is available and the dashcam can connect to it. This is so that the dashcam isn't keeping WiFi on during parking mode everywhere, only in my garage so I can pull footage from it.
+The `down.sh` file is called when the dashcam goes into parking mode to turn off the WiFi and therefore save power. Given this we can modify it wait till the AP is turned off and then reconfigure the WiFi interface to turn on as a WPA supplicant. In laymans terms, act like a normal WiFi devices and connect to a WiFi network. My script goes a bit further and will only keep the WiFi on if my home WiFi SSID is available and the dashcam can connect to it. This is so that the dashcam isn't keeping WiFi on during parking mode everywhere, only in my garage so I can pull footage from it. Once you complete this process and have the dashcam successfully connecting to your WiFi the `WiFi Auto On` option in the dashcam menu can be set to `off` without affecting this script's functionality. This makes the dashcam much more secure as WPA2 Personal (which is what I believe it is using in AP mode) is insecure and you don't want it broadcasting this while driving. 
 
 ### 7. Modify wpa_supplicant.conf
 The `wpa_supplicant.conf` file defines what WiFi network we will be joining. The wpa_supplicant.conf file in this repo is the exact contents you require except replacing the CAPS statements with the correct info. If your WiFi is WPA Enterprise there is capability to support that but I won't delve into it here because, well, if you have WPA Enterprise you can likely figure it out :p. 
