@@ -49,9 +49,11 @@ After you have done this you should be able to put the dashcam in parking mode a
 
 ### 8. Create ftpuser
 This step is technically optional, you could just use the root user for this but that gives me the ick. To add a user run the following commands:
-```mkdir -p /home/ftpuser
+```
+mkdir -p /home/ftpuser
 adduser --home /home/ftpuser ftpuser
-passwd ftpuser``` 
+passwd ftpuser
+``` 
 enter the password for `ftpuser` when prompted
 
 ### 9. Symlink
