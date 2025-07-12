@@ -36,9 +36,9 @@ Use command `passwd` and enter new password when prompted. It will complain abou
 
 ### 6. Modify the down.sh script
 Because I don't know how litigous Vantrue are, and there are no licence markers on the files I won't share the full files but I will share the script segments I have written which you can append yourself.
-Navigate to /usr/share/wifiscripts/
-`cd /usr/share/wifiscripts`
-You can now use vi to edit the down.sh file. Append the contents of the down-append.sh file to down.sh ensuring that exit 0 is only present after the appended code and not before.
+Navigate to `/usr/share/wifiscripts/`
+```cd /usr/share/wifiscripts```
+You can now use vi to edit the down.sh file. Append the contents of the down-append.sh file to down.sh ensuring that `exit 0` is only present after the appended code and not before.
 #### Why do this?
 The `down.sh` file is called when the dashcam goes into parking mode to turn off the WiFi and therefore save power. Given this we can modify it wait till the AP is turned off and then reconfigure the WiFi interface to turn on as a WPA supplicant. In laymans terms, act like a normal WiFi devices and connect to a WiFi network. My script goes a bit further and will only keep the WiFi on if my home WiFi SSID is available and the dashcam can connect to it. This is so that the dashcam isn't keeping WiFi on during parking mode everywhere, only in my garage so I can pull footage from it.
 
@@ -49,9 +49,9 @@ After you have done this you should be able to put the dashcam in parking mode a
 
 ### 8. Create ftpuser
 This step is technically optional, you could just use the root user for this but that gives me the ick. To add a user run the following commands:
-`mkdir -p /home/ftpuser`
-`adduser --home /home/ftpuser ftpuser`
-`passwd ftpuser` - enter the password for `ftpuser` when prompted
+```mkdir -p /home/ftpuser
+adduser --home /home/ftpuser ftpuser
+passwd ftpuser``` - enter the password for `ftpuser` when prompted
 
 ### 9. Symlink
 The ftp server will drop the user into their home directory by default, instead of changing that behaviour I've decided to create a symbolic link to the `/mnt/sd` directory which is where the footage is stored. To create the symlink
