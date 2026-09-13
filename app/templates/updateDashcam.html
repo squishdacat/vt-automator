@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New dashcam</title>
+	</head>
+	<body>
+		<form target="/dashcam/update/{{details[0]}}" method="POST">
+			IP <input type="text" name="ip" value="{{details[0]}}"><br>
+			User <input type="text" name="user" value="{{details[1]}}"><br>
+			Password <input type="text" name="password" value="REDACTED"><br>
+			Ingest directory <input type="text" name="ingestDir" value="{{details[2]}}"><br>
+			<input type="submit">
+		</form>
+	</body>
+</html>
