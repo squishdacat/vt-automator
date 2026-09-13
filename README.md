@@ -1,7 +1,12 @@
 # vt-automator
 A small project that aims to automate pulling files off of the Vantrue N4 Pro dashcam
 
-# Getting Started
+I have expanded this to include a small Python web app that will pull event files off a device when it requests. Is the use of a database for this a bit excessive? Yes, it probably is. Did this need a full(ish) web interface? No, not really. Why did I do this? Because other than the NixOS module/package it is all artisinally hand coded as I wanted to understand properly how Flask works. 
+
+# Getting started (nix flake)
+TODO
+
+# Getting Started (Device side)
 What I have managed to do is gain telnet and ftp access to my Vantrue N4 Pro dashcam and successfully reconfigured it to act as a WPA supplicant (WiFi client) during parking mode. To do this yourself it will require some familiarity with a commandline. I am running NixOS (btw) and so any non-dashcam specific commands are likely to be the NixOS version, I'll make a note of this as we go through.
 
 This project also assumes you have a battery for your dashcam that allows it to go into parking mode. While it is likely possible to have the dashcam turn on WiFi while driving this seems of little utility to me.
