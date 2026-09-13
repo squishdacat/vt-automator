@@ -9,7 +9,10 @@ with lib;
 
 let
   cfg = config.services.vt-automator;
-  python = pkgs.python314;
+  pythonEnv = pkgs.python314.withPackages (ps: [
+    cfg.package
+    ps.gunicorn
+  ]);
 in
 {
   options.services.vt-automator = {
@@ -73,7 +76,7 @@ in
 
       serviceConfig = {
         ExecStart = ''
-          ${python.pkgs.gunicorn}/bin/gunicorn vt_automator.app:app \
+          ${pythonEnv}/bin/gunicorn vt_automator.app:app \
             --bind ${toString cfg.bindAddress}:${toString cfg.port} \
             --workers ${toString cfg.workers}
         '';
