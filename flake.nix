@@ -15,7 +15,7 @@
         python = pkgs.python314;
       in
       {
-        packages.default = python.pkgs.buildPythonApplication {
+        packages.default = python.pkgs.buildPythonPackage {
           pname = "vt-automator";
           version = "0.1.0";
           src = ./.;
