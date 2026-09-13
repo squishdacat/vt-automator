@@ -34,5 +34,8 @@
     )
     // {
       nixosModules.default = import ./module.nix;
+      overlays.default = final: prev: {
+        vt-automator = self.packages.${final.system}.default;
+      };
     };
 }
