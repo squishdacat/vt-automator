@@ -1,0 +1,11 @@
+[project]
+name = "vt-automator"
+version = "0.1.0"
+dependencies = ["flask"]
+
+[project.scripts]
+vt-automator = "vt_automator.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
