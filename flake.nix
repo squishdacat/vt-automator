@@ -18,7 +18,7 @@
         packages.default = python.pkgs.buildPythonApplication {
           pname = "vt-automator";
           version = "0.1.0";
-          src = ./app;
+          src = ./.;
           format = "pyproject";
           nativeBuildInputs = [ python.pkgs.hatchling ];
           propagatedBuildInputs = [

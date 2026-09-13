@@ -1,5 +1,5 @@
 [project]
-name = "vt-automator"
+name = "vt_automator"
 version = "0.1.0"
 dependencies = ["flask"]
 
