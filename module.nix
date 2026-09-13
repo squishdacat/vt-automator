@@ -33,7 +33,7 @@ in
     bindAddress = mkOption {
       type = types.str;
       default = "127.0.0.1";
-      description = "The address vt-automator will bind to. (Default: 127.0.0.1)";
+      description = "The address vt-automator will bind to.";
     };
 
     port = mkOption {
@@ -65,6 +65,7 @@ in
     systemd.tmpfiles.rules = [
       "d ${dirOf cfg.databasePath} 0750 ${cfg.user} ${cfg.user} -"
     ];
+
     systemd.services.vt-automator = {
       description = "vt-automator dashcam FTP app";
       wantedBy = [ "multi-user.target" ];
@@ -76,8 +77,8 @@ in
 
       serviceConfig = {
         ExecStart = ''
-          ${pythonEnv}/bin/gunicorn vt_automator.app:app \
-            --bind ${toString cfg.bindAddress}:${toString cfg.port} \
+          ${pythonEnv}/bin/gunicorn "vt_automator:create_app()" \
+            --bind ${cfg.bindAddress}:${toString cfg.port} \
             --workers ${toString cfg.workers}
         '';
         User = cfg.user;
