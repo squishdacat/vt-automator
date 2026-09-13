@@ -72,7 +72,7 @@ in
 
       serviceConfig = {
         ExecStart = ''
-          ${cfg.package}/bin/gunicorn vt_automator.app:app \
+          ${python.pkgs.gunicorn}/bin/gunicorn vt_automator.app:app \
             --bind ${toString cfg.bindAddress}:${toString cfg.port} \
             --workers ${toString cfg.workers}
         '';
