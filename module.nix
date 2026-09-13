@@ -9,6 +9,7 @@ with lib;
 
 let
   cfg = config.services.vt-automator;
+  python = pkgs.python314;
 in
 {
   options.services.vt-automator = {
